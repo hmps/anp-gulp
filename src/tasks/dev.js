@@ -1,6 +1,4 @@
-'use strict';
-
-var gulp = require('gulp');
+import gulp from 'gulp';
 
 gulp.task('watch', ['clean', 'styles', 'lint:all' ], function() {
     gulp.watch('src/stylesheets/**/*.styl', ['styles']);

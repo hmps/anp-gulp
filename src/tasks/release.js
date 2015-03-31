@@ -1,9 +1,7 @@
-'use strict';
-
-var gulp = require('gulp'),
-    header = require('gulp-header'),
-    size = require('gulp-size'),
-    pkg = global.MODULE_PKG;
+import gulp from 'gulp';
+import header from 'header';
+import size from 'size';
+import pkg from 'pkg';
 
 gulp.task('release', ['build:js', 'styles:min'], function gulpBuild() {
     var banner = getBannerText();
@@ -39,12 +37,9 @@ gulp.task('release', ['build:js', 'styles:min'], function gulpBuild() {
 });
 
 function getBannerText() {
-    return [
-        '/**',
-        ' * <%= pkg.name %> - <%= pkg.description %>',
-        ' * @version v<%= pkg.version %>',
-        ' * @author  <%= pkg.author %>',
-        ' */',
-        ''
-    ].join('\n');
+    return `/**,
+* <%= pkg.name %> - <%= pkg.description %>,
+* @version v<%= pkg.version %>,
+* @author  <%= pkg.author %>,
+*/`;
 }

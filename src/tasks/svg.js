@@ -1,8 +1,6 @@
-'use strict';
-
-var gulp = require('gulp'),
-    svgstore = require('gulp-svgstore'),
-    svgmin = require('gulp-svgmin');
+import gulp from 'gulp';
+import svgstore from 'svgstore';
+import svgmin from 'svgmin';
 
 gulp.task('svgstore', function svg() {
     return gulp

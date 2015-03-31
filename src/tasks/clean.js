@@ -1,12 +1,8 @@
-'use strict';
-
-var gulp = require('gulp'),
-    del = require('del');
+import gulp from 'gulp';
+import del from 'del';
 
 gulp.task('clean', ['clean:build']);
 
-gulp.task('clean:build', function(cb) {
-    del([
-        'dist/build/**',
-    ], cb);
+gulp.task('clean:build', function (cb) {
+    del(['dist/build/**'], cb);
 });

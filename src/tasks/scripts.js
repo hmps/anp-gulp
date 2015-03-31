@@ -1,15 +1,12 @@
-'use strict';
-
-var chalk      = require('chalk'),
-    complexity = require('gulp-complexity'),
-    concat     = require('gulp-concat'),
-    gulp       = require('gulp'),
-    jscs       = require('gulp-jscs'),
-    jshint     = require('gulp-jshint'),
-    notify     = require('gulp-notify'),
-    rename     = require('gulp-rename'),
-    size       = require('gulp-size'),
-    uglify     = require('gulp-uglify');
+import chalk from 'chalk';
+import complexity from 'complexity';
+import gulp from 'gulp';
+import jscs from 'jscs';
+import jshint from 'jshint';
+import notify from 'notify';
+import rename from 'rename';
+import size from 'size';
+import uglify from 'uglify';
 
     // To get to the root package.json we have to go three steps back up.
     // TODO: Fix the pattern glob here.

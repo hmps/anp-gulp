@@ -1,5 +1,3 @@
-'use strict';
-
-var gulp = require('gulp');
+import gulp from 'gulp';
 
 gulp.task('build', ['build:js', 'styles:min'], function gulpBuild() {});

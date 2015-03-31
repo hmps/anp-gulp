@@ -1,7 +1,5 @@
-'use strict';
-
-var gulp = require('gulp'),
-    browserSync = require('browser-sync');
+import gulp from 'gulp';
+import browserSync from 'browserSync';
 
 gulp.task('bs', ['watch'], function() {
     browserSync({

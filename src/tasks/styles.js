@@ -1,14 +1,12 @@
-'use strict';
-
-var autoprefixer = require('gulp-autoprefixer'),
-    chalk = require('chalk'),
-    glob = require('glob'),
-    gulp = require('gulp'),
-    nib = require('nib'),
-    rename = require('gulp-rename'),
-    size = require('gulp-size'),
-    sourcemaps = require('gulp-sourcemaps'),
-    stylus = require('gulp-stylus');
+import autoprefixer from 'autoprefixer';
+import chalk from 'chalk';
+import glob from 'glob';
+import gulp from 'gulp';
+import nib from 'nib';
+import rename from 'rename';
+import size from 'size';
+import sourcemaps from 'sourcemaps';
+import stylus from 'stylus';
 
 
 
