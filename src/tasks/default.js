@@ -1,3 +1,3 @@
 import gulp from 'gulp';
 
-gulp.task('default', function gulpDefault() {});
+gulp.task('default', ['bs'], function gulpDefault() {});
