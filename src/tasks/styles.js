@@ -53,7 +53,29 @@ gulp.task('styles:min', function gulpStylusMin() {
             path.extname = '.min.css';
         }))
         .pipe(gulp.dest('src/stylesheets'))
-        .pipe(gulp.dest('build/stylesheets'))
+        .pipe(size());
+});
+
+
+/**
+ * Compile stylus source to minified CSS in dist/
+ */
+gulp.task('styles:min', function gulpStylusMin() {
+
+    var path = getStyleImportPath();
+
+    return gulp
+        .src('src/stylesheets/*.styl')
+        .pipe(stylus({
+            use: nib(),
+            import: ['nib', path],
+            compress: true
+        }))
+        .pipe(autoprefixer('last 2 version'))
+        .pipe(rename(function rename(path) {
+            path.extname = '.min.css';
+        }))
+        .pipe(gulp.dest('dist/stylesheets'))
         .pipe(size());
 });
 
