@@ -83,15 +83,12 @@ gulp.task('complexity', function gulpComplexity() {
 gulp.task('build:js', function gulpPackageJs() {
 
     gulp.src('src/*.module.js')
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest('dist'));
 
     return gulp.src([
-            'src/javascript/*.controller.js',
-            'src/javascript/*.factory.js',
-            'src/javascript/*.service.js',
-            'src/javascript/*.directive.js'
+            'src/javascript/**/*.js',
         ])
-        .pipe(gulp.dest('build/javascript'))
+        .pipe(gulp.dest('dist/javascript'))
         .pipe(size());
 });
 
@@ -103,7 +100,7 @@ gulp.task('build:js', function gulpPackageJs() {
  * This makes a minified copy of the file that is built by task build:js.
  */
 gulp.task('build:jsmin', ['build:js'], function gulpPackageJs() {
-    return gulp.src('build/javascript/*.js')
+    return gulp.src('dist/javascript/**/*.js')
         .pipe(size())
         .pipe(uglify())
         .pipe(rename(function rename(path) {
