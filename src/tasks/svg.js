@@ -1,6 +1,6 @@
 import gulp from 'gulp';
-import svgstore from 'svgstore';
-import svgmin from 'svgmin';
+import svgstore from 'gulp-svgstore';
+import svgmin from 'gulp-svgmin';
 
 gulp.task('svgstore', function svg() {
     return gulp

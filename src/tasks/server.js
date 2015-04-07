@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import browserSync from 'browserSync';
+import browserSync from 'browser-sync';
 
 gulp.task('bs', ['watch'], function () {
     browserSync({

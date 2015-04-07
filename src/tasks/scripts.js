@@ -1,12 +1,12 @@
 import chalk from 'chalk';
-import complexity from 'complexity';
 import gulp from 'gulp';
-import jscs from 'jscs';
-import jshint from 'jshint';
-import notify from 'notify';
-import rename from 'rename';
-import size from 'size';
-import uglify from 'uglify';
+import complexity from 'gulp-complexity';
+import jscs from 'gulp-jscs';
+import jshint from 'gulp-jshint';
+import notify from 'gulp-notify';
+import rename from 'gulp-rename';
+import size from 'gulp-size';
+import uglify from 'gulp-uglify';
 
     // To get to the root package.json we have to go three steps back up.
     // TODO: Fix the pattern glob here.
@@ -80,7 +80,7 @@ gulp.task('complexity', function gulpComplexity() {
 /**
  * Build a package file of javascript in src/javascript
  */
-gulp.task('build:js', function gulpPackageJs() {
+gulp.task('js:dist', function gulpPackageJs() {
 
     gulp.src('src/*.module.js')
         .pipe(gulp.dest('dist'));
@@ -91,6 +91,11 @@ gulp.task('build:js', function gulpPackageJs() {
         .pipe(gulp.dest('dist/javascript'))
         .pipe(size());
 });
+
+/**
+ * Build a package file of javascript in src/javascript
+ */
+gulp.task('build:js', ['js:dist'], function gulpPackageJs() {});
 
 
 
