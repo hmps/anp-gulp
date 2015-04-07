@@ -1,12 +1,12 @@
-import autoprefixer from 'autoprefixer';
+import autoprefixer from 'gulp-autoprefixer';
 import chalk from 'chalk';
 import glob from 'glob';
 import gulp from 'gulp';
 import nib from 'nib';
-import rename from 'rename';
-import size from 'size';
-import sourcemaps from 'sourcemaps';
-import stylus from 'stylus';
+import rename from 'gulp-rename';
+import size from 'gulp-size';
+import sourcemaps from 'gulp-sourcemaps';
+import stylus from 'gulp-stylus';
 
 
 
@@ -28,7 +28,6 @@ gulp.task('styles', function gulpStylus() {
         .pipe(autoprefixer('last 2 version'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/stylesheets'))
-        .pipe(gulp.dest('build/stylesheets'))
         .pipe(size());
 });
 
@@ -60,7 +59,7 @@ gulp.task('styles:min', function gulpStylusMin() {
 /**
  * Compile stylus source to minified CSS in dist/
  */
-gulp.task('styles:min', function gulpStylusMin() {
+gulp.task('styles:dist', function gulpStylusMin() {
 
     var path = getStyleImportPath();
 
@@ -72,9 +71,6 @@ gulp.task('styles:min', function gulpStylusMin() {
             compress: true
         }))
         .pipe(autoprefixer('last 2 version'))
-        .pipe(rename(function rename(path) {
-            path.extname = '.min.css';
-        }))
         .pipe(gulp.dest('dist/stylesheets'))
         .pipe(size());
 });
