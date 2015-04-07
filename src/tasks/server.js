@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import browserSync from 'browserSync';
 
-gulp.task('bs', ['watch'], function() {
+gulp.task('bs', ['watch'], function () {
     browserSync({
         server: {
             baseDir: './'
@@ -13,7 +13,7 @@ gulp.task('bs', ['watch'], function() {
             'src/javascript/*.js',
             'src/images/**/*',
             'src/templates/*.html',
-            'build/stylesheets/*.css'
+            'src/stylesheets/*.css'
         ],
         browser: ['google chrome canary']
     });
