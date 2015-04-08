@@ -22,6 +22,7 @@
   "homepage": "https://github.com/hmps/anp-gulp",
   "dependencies": {
     "babel": "^4.7.16",
+    "babel-runtime": "^5.0.7",
     "browser-sync": "^2.0.1",
     "chalk": "^0.5.1",
     "del": "^1.1.1",
