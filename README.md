@@ -23,7 +23,7 @@ global.MODULE_PKG = require('./package.json');
 These are the tasks available in anp-gulp helpers. The default task is <a href="#bs">bs</a>.
 
 ### clean
-**Deps: clean:dist.**
+**Deps: <a href="#cleandist">clean:dist</a>.**
 
 noop
 
@@ -37,12 +37,12 @@ Delete the dist-folder and all its content.
 2. Runs a watch on `src/javascript/*.js` and executes <a href="#styles">lint:all</a> on changes.
 
 ### dist
-**Deps: clean:dist, js:dist, styles:dist, images:dist, html:dist**
+**Deps: <a href="#cleandist">clean:dist</a>, <a href="#jsdist">js:dist</a>, <a href="#stylesdist">styles:dist</a>, <a href="#images:dist">images:dist</a>, <a href="#htmldist">html:dist</a>**
 
 noop
 
 ### html
-**Deps: html:dist**
+**Deps: <a href="#htmldist">html:dist</a>**
 
 noop
 
@@ -50,12 +50,12 @@ noop
 Copies *.html files from `src/templates/` to `dist/templates/`.
 
 ### images
-**Deps: images:dist**.
+**Deps: <a href="#images:dist">images:dist</a>**.
 
 noop
 
 ### images:dist
-**Deps: images:svg**.
+**Deps: <a href="#imagessvg">images:svg</a>**.
 
 Copies *.png, *.gif, *.jpg, *.jpeg, *.webp from `src/images/` to `dist/images/`.
 
@@ -63,7 +63,7 @@ Copies *.png, *.gif, *.jpg, *.jpeg, *.webp from `src/images/` to `dist/images/`.
 Minifies and combines all svg files in `src/images/` and copies the resulting file to `dist/images/`.
 
 ### test
-**Deps: karma***.
+**Deps: <a href="#karma">karma</a>***.
 
 noop
 
@@ -86,12 +86,12 @@ Performs a minor bump of the version number in package.json.
 Performs a major bump of the version number in package.json.
 
 ### lint
-**Deps: lint:all**
+**Deps: <a href="#lintall">lint:all</a>**
 
 noop
 
 ### lint:all
-**Deps: lint:jshint, lint:jscs**.
+**Deps: <a href="#lintjshint">lint:jshint</a>, <a href="#lintjscs">lint:jscs</a>**.
 
 noop
 
@@ -120,7 +120,7 @@ Compiles `src/stylesheets/*.styl` to `src/stylesheets/*.css`.
 Has a hard dependecy on *stylus-helpers*, which is available through JSPM. It uses *stylus-helpers* to load up helpers and Stylus modules to be available in the path once the stylus files are being compiled.
 
 ### styles:dist
-**Deps: stylus**
+**Deps: <a href="#styles">styles</a>**
 
 Copies `src/stylesheets/*.css` to `dist/stylesheets/*.css`.
 
