@@ -22,7 +22,8 @@ gulp.task('styles', function gulpStylus() {
         .pipe(sourcemaps.init())
         .pipe(stylus({
             use: nib(),
-            import: ['nib', path],
+            import: ['nib', path + '/helpers/*.styl'],
+            include: path,
             compress: false
         }))
         .pipe(autoprefixer('last 2 version'))
@@ -44,7 +45,8 @@ gulp.task('styles:min', function gulpStylusMin() {
         .src('src/stylesheets/*.styl')
         .pipe(stylus({
             use: nib(),
-            import: ['nib', path],
+            import: ['nib', path + '/helpers/*.styl'],
+            include: path,
             compress: false
         }))
         .pipe(autoprefixer('last 2 version'))
@@ -67,7 +69,8 @@ gulp.task('styles:dist', function gulpStylusMin() {
         .src('src/stylesheets/*.styl')
         .pipe(stylus({
             use: nib(),
-            import: ['nib', path],
+            import: ['nib', path + '/helpers/*.styl'],
+            include: path,
             compress: true
         }))
         .pipe(autoprefixer('last 2 version'))
@@ -82,17 +85,50 @@ gulp.task('styles:dist', function gulpStylusMin() {
  * @return {[type]} [description]
  */
 function getStyleImportPath() {
-    var dir = glob.sync('jspm_packages/apsis/stylus-helpers*'),
-        path = '';
+    var dir = glob.sync(process.cwd() + '/jspm_packages/apsis/stylus-helpers*');
 
-    if ( dir.length ) {
-        path = '../../' + dir[0] + '/*.styl';
-    } else {
+    if ( !dir.length ) {
         console.log('');
         console.log(chalk.bold.red('>>>>> You have not installed Apsis stylus helpers. <<<<<<'));
         console.log(chalk.yellow('If you need them, run jspm install apsis:styles.'));
         console.log('');
     }
 
-    return path;
+    return dir;
+}
+
+/**
+ * [getStyleImportPath description]
+ * @return {[type]} [description]
+ */
+function getStyleImportPath() {
+    var packageDir = getPackageDir(require(process.cwd() + '/package.json')),
+        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/stylus-helpers*');
+
+    if (!dir.length) {
+        console.log('');
+        console.log(chalk.bold.red('>>>>> You have not installed Apsis stylus helpers. <<<<<<'));
+        console.log(chalk.yellow('If you need them, run jspm install apsis:styles.'));
+        console.log('');
+    }
+
+    return dir;
+}
+
+
+
+function getPackageDir(pkgInfo) {
+    var packageDir = 'jspm_packages';
+
+    if ( !!pkgInfo.jspm ) {
+        if ( !!pkgInfo.jspm.directories && !!pkgInfo.jspm.directories.packages ) {
+            packageDir = pkgInfo.jspm.directories.packages;
+        }
+    } else if ( !!pkgInfo.directories && !!pkgInfo.directories.packages ) {
+        packageDir = pkgInfo.directories.packages;
+    } else {
+        throw new Error('Can\t find package.json');
+    }
+
+    return packageDir;
 }
