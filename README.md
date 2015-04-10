@@ -18,3 +18,111 @@ global.MODULE_PKG = require('./package.json');
 
 /** IF YOU NEED SPECIFIC GULP TASKS, DEFINE THEM HERE **/
 ```
+
+# Tasks
+These are the tasks available in anp-gulp helpers. The default task is <a href="#bs">bs</a>.
+
+### clean
+**Deps: clean:dist.**
+
+noop
+
+### clean:dist
+Delete the dist-folder and all its content.
+
+### watch
+**Deps: <a href="#clean">clean</a>, <a href="#styles">styles</a>, <a href="#lintall">lint:all</a>.**
+
+1. Runs a watch on `src/stylesheets/*.styl` and executes <a href="#styles">styles</a> on changes.
+2. Runs a watch on `src/javascript/*.js` and executes <a href="#styles">lint:all</a> on changes.
+
+### dist
+**Deps: clean:dist, js:dist, styles:dist, images:dist, html:dist**
+
+noop
+
+### html
+**Deps: html:dist**
+
+noop
+
+### html:dist
+Copies *.html files from `src/templates/` to `dist/templates/`.
+
+### images
+**Deps: images:dist**.
+
+noop
+
+### images:dist
+**Deps: images:svg**.
+
+Copies *.png, *.gif, *.jpg, *.jpeg, *.webp from `src/images/` to `dist/images/`.
+
+### images:svg
+Minifies and combines all svg files in `src/images/` and copies the resulting file to `dist/images/`.
+
+### test
+**Deps: karma***.
+
+noop
+
+### karma
+Runs karma with config file `test/karma.conf.js`.
+
+### release
+Adds a header with package information to `dist/*.module.js` and `dist/stylesheets/*.css`.
+
+### bump (major, minor, patch)
+Runs bump:patch
+
+### bump:patch
+Performs a patch bump of the version number in package.json.
+
+### bump:minor
+Performs a minor bump of the version number in package.json.
+
+### bump:major
+Performs a major bump of the version number in package.json.
+
+### lint
+**Deps: lint:all**
+
+noop
+
+### lint:all
+**Deps: lint:jshint, lint:jscs**.
+
+noop
+
+### lint:jshint
+Runs JSHint on *.js in `src/javascript/`.
+
+### link:jscs
+Runs JSCS on *.js in `src/javascript`.
+
+### complexity
+Runs [complexity report](https://github.com/philbooth/complexity-report) on *.js in `src/javascript/`.
+
+### js:dist
+
+1. Copies `src/*.module.js` to `dist/`
+2. Copies `src/javascript/*.js` to `dist/javascript/`.
+
+### bs
+**Deps: watch**
+
+Starts a browser-sync session, loading `demo/` as root.
+
+### styles
+Compiles `src/stylesheets/*.styl` to `src/stylesheets/*.css`.
+
+Has a hard dependecy on *stylus-helpers*, which is available through JSPM. It uses *stylus-helpers* to load up helpers and Stylus modules to be available in the path once the stylus files are being compiled.
+
+### styles:dist
+**Deps: stylus**
+
+Copies `src/stylesheets/*.css` to `dist/stylesheets/*.css`.
+
+# ES6 / ES2015
+TODO
