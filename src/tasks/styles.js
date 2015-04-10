@@ -33,31 +33,6 @@ gulp.task('styles', function gulpStylus() {
 });
 
 
-
-/**
- * Compile stylus source to minified CSS
- */
-gulp.task('styles:min', function gulpStylusMin() {
-
-    var path = getStyleImportPath();
-
-    return gulp
-        .src('src/stylesheets/*.styl')
-        .pipe(stylus({
-            use: nib(),
-            import: ['nib', path + '/helpers/*.styl'],
-            include: path,
-            compress: false
-        }))
-        .pipe(autoprefixer('last 2 version'))
-        .pipe(rename(function rename(path) {
-            path.extname = '.min.css';
-        }))
-        .pipe(gulp.dest('src/stylesheets'))
-        .pipe(size());
-});
-
-
 /**
  * Compile stylus source to minified CSS in dist/
  */
