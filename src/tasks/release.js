@@ -3,14 +3,12 @@ import header from 'gulp-header';
 import size from 'gulp-size';
 import bump from 'gulp-bump';
 
-// Since this is dynamic we need to use a regular old require here
-var pkg = require(process.cwd() + '/package.json');
-
 // git tag
 // git commit
 
 gulp.task('release', () => {
-    var banner = getBannerText();
+    // Since this is dynamic we need to use a regular old require here
+    var banner = getBannerText(require(process.cwd() + '/package.json'));
 
     gulp.src('dist/stylesheets/*.css')
         .pipe(header(banner, { pkg: pkg }))
@@ -53,7 +51,7 @@ gulp.task('bump', function() {
  *
  * @todo Check that all params exist in package.json
  */
-function getBannerText() {
+function getBannerText(pkg) {
     return `/**,
 * <%= pkg.name %> - <%= pkg.description %>,
 * @version v<%= pkg.version %>,
