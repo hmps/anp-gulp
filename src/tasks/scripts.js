@@ -13,17 +13,15 @@ import uglify from 'gulp-uglify';
     // moduleName = global.MODULE_PKG.name.match(/ng-(.*)/)[1];
 
 
+gulp.task('lint', ['lint:all'], function() {});
+
+
 /**
  * Lint all files in src/javascript using JSHint and JSCS.
  *
  * Config for both are found in .jshintrc and .jscsrc respectively.
  */
-gulp.task('lint:all', ['lint:jshint', 'lint:jscs'], function gulpLint() {
-    return gulp.src([
-            'src/javascript/**/*.js'
-        ])
-        .pipe(size());
-});
+gulp.task('lint:all', ['lint:jshint', 'lint:jscs'], function gulpLint() {});
 
 
 
@@ -34,11 +32,12 @@ gulp.task('lint:all', ['lint:jshint', 'lint:jscs'], function gulpLint() {
  */
 gulp.task('lint:jshint', function gulpJshint() {
     return gulp.src([
-            'modules/**/*.js'
+            'src/javascript/**/*.js'
         ])
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jshint.reporter('fail'))
+        .pipe(size())
         .on('error', notify.onError(function onError(error) {
             return error.message;
         }));
@@ -53,9 +52,10 @@ gulp.task('lint:jshint', function gulpJshint() {
  */
 gulp.task('lint:jscs', function gulpJscs() {
     return gulp.src([
-            'modules/**/*.js'
+            'src/javascript/**/*.js'
         ])
         .pipe(jscs())
+        .pipe(size())
         .on('error', notify.onError(function onError(error) {
             return error.message;
         }));
@@ -92,26 +92,6 @@ gulp.task('js:dist', function gulpPackageJs() {
         .pipe(size());
 });
 
-/**
- * Build a package file of javascript in src/javascript
- */
-gulp.task('build:js', ['js:dist'], function gulpPackageJs() {});
 
 
-
-/**
- * Build a minified version of the source.
- *
- * This makes a minified copy of the file that is built by task build:js.
- */
-gulp.task('build:jsmin', ['build:js'], function gulpPackageJs() {
-    return gulp.src('dist/javascript/**/*.js')
-        .pipe(size())
-        .pipe(uglify())
-        .pipe(rename(function rename(path) {
-            path.extname = '.min.js';
-        }))
-        .pipe(gulp.dest('build/javascript'))
-        .pipe(size());
-});
 
