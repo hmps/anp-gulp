@@ -3,7 +3,6 @@ import chalk from 'chalk';
 import glob from 'glob';
 import gulp from 'gulp';
 import nib from 'nib';
-import rename from 'gulp-rename';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
@@ -60,25 +59,8 @@ gulp.task('styles:dist', function gulpStylusMin() {
  * @return {[type]} [description]
  */
 function getStyleImportPath() {
-    var dir = glob.sync(process.cwd() + '/jspm_packages/apsis/stylus-helpers*');
-
-    if ( !dir.length ) {
-        console.log('');
-        console.log(chalk.bold.red('>>>>> You have not installed Apsis stylus helpers. <<<<<<'));
-        console.log(chalk.yellow('If you need them, run jspm install apsis:styles.'));
-        console.log('');
-    }
-
-    return dir;
-}
-
-/**
- * [getStyleImportPath description]
- * @return {[type]} [description]
- */
-function getStyleImportPath() {
     var packageDir = getPackageDir(require(process.cwd() + '/package.json')),
-        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/stylus-helpers*');
+        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/ui-components*');
 
     if (!dir.length) {
         console.log('');
