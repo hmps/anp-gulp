@@ -8,21 +8,22 @@ import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
 
 
+var uiComponentsPath = getStyleImportPath(),
+    importPaths = ['nib', uiComponentsPath + '/helpers/*.styl', uiComponentsPath + '/settings/*.styl'];
+
 
 /**
  * Compile stylus source to CSS
  */
 gulp.task('styles', function gulpStylus() {
 
-    var path = getStyleImportPath();
-
     return gulp
         .src('src/stylesheets/*.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({
             use: nib(),
-            import: ['nib', path + '/helpers/*.styl'],
-            include: path,
+            import: importPaths,
+            include: uiComponentsPath,
             compress: false
         }))
         .pipe(autoprefixer('last 2 version'))
@@ -37,14 +38,12 @@ gulp.task('styles', function gulpStylus() {
  */
 gulp.task('styles:dist', function gulpStylusMin() {
 
-    var path = getStyleImportPath();
-
     return gulp
         .src('src/stylesheets/*.styl')
         .pipe(stylus({
             use: nib(),
-            import: ['nib', path + '/helpers/*.styl'],
-            include: path,
+            import: importPaths,
+            include: uiComponentsPath,
             compress: true
         }))
         .pipe(autoprefixer('last 2 version'))
