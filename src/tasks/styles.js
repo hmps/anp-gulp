@@ -6,6 +6,7 @@ import nib from 'nib';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
+import jeet from 'jeet';
 
 
 var uiComponentsPath = getStyleImportPath(),
@@ -21,7 +22,7 @@ gulp.task('styles', function gulpStylus() {
         .src('src/stylesheets/*.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({
-            use: nib(),
+            use: [jeet(), nib()],
             import: importPaths,
             include: uiComponentsPath,
             compress: false
@@ -41,7 +42,7 @@ gulp.task('styles:dist', function gulpStylusMin() {
     return gulp
         .src('src/stylesheets/*.styl')
         .pipe(stylus({
-            use: nib(),
+            use: [jeet(), nib()],
             import: importPaths,
             include: uiComponentsPath,
             compress: true
