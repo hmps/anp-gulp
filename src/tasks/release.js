@@ -21,11 +21,27 @@ gulp.task('tag', (done) => {
     }
 });
 
-gulp.task('bump', (params) => {
-    gulp.src('./package.json')
-        .pipe(bump({ type: gulp.env.type }))
-        .pipe(gulp.dest('./'));
+gulp.task('bump', function() {
+    bumpHelper({});
 });
+
+    gulp.task('bump:patch', function() {
+        bumpHelper({});
+    });
+
+    gulp.task('bump:minor', function() {
+        bumpHelper({type: 'minor'});
+    });
+
+    gulp.task('bump:major', function() {
+        bumpHelper({type: 'major'});
+    });
+
+    function bumpHelper(_options) {
+        return gulp.src('./package.json')
+          .pipe(bump(_options))
+          .pipe(gulp.dest('./'));
+    }
 
 gulp.task('release', () => {
     // Since this is dynamic we need to use a regular old require here
