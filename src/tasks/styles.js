@@ -6,7 +6,8 @@ import nib from 'nib';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
-import jeet from 'jeet';
+import lost from 'lost';
+import postcss from 'postcss';
 
 
 var uiComponentsPath = getStyleImportPath(),
@@ -22,12 +23,15 @@ gulp.task('styles', function gulpStylus() {
         .src('src/stylesheets/*.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus({
-            use: [jeet(), nib()],
+            use: nib(),
             import: importPaths,
             include: uiComponentsPath,
             compress: false
         }))
-        .pipe(autoprefixer('last 2 version'))
+        .pipe(postcss([
+          lost(),
+          autoprefixer('last 2 versions')
+        ]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/stylesheets'))
         .pipe(size());
@@ -42,12 +46,15 @@ gulp.task('styles:dist', function gulpStylusMin() {
     return gulp
         .src('src/stylesheets/*.styl')
         .pipe(stylus({
-            use: [jeet(), nib()],
+            use: nib(),
             import: importPaths,
             include: uiComponentsPath,
             compress: true
         }))
-        .pipe(autoprefixer('last 2 version'))
+        .pipe(postcss([
+          lost(),
+          autoprefixer('last 2 versions')
+        ]))
         .pipe(gulp.dest('dist/stylesheets'))
         .pipe(size());
 });
