@@ -7,7 +7,7 @@ import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
 import lost from 'lost';
-import postcss from 'postcss';
+import postcss from 'gulp-postcss';
 
 
 var uiComponentsPath = getStyleImportPath(),
