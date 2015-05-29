@@ -29,9 +29,9 @@ gulp.task('styles', function gulpStylus() {
             compress: false
         }))
         .pipe(postcss([
-          lost(),
-          autoprefixer('last 2 versions')
+          lost()
         ]))
+        .pipe(autoprefixer('last 2 versions'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('src/stylesheets'))
         .pipe(size());
