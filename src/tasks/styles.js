@@ -67,7 +67,7 @@ gulp.task('styles:dist', function gulpStylusMin() {
  */
 function getStyleImportPath() {
     var packageDir = getPackageDir(require(process.cwd() + '/package.json')),
-        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/ui-components*/');
+        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/UI-components*/');
 
     if (!dir.length) {
         console.log('');
