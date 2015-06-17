@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import glob from 'glob';
 import gulp from 'gulp';
 import nib from 'nib';
+import path from 'path';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 import stylus from 'gulp-stylus';
@@ -67,7 +68,10 @@ gulp.task('styles:dist', function gulpStylusMin() {
  */
 function getStyleImportPath() {
     var packageDir = getPackageDir(require(process.cwd() + '/package.json')),
-        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/UI-components*/');
+        dir = glob.sync(process.cwd() + '/' + packageDir + '/apsis/ui-components*/')
+                .map((item) => {
+                    return path.resolve(item);
+                });
 
     if (!dir.length) {
         console.log('');
