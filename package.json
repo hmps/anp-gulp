@@ -1,6 +1,6 @@
 {
   "name": "anp-gulp",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "A collection of gulp tasks only relevant to my exact project setup.",
   "main": "dist/index.js",
   "repository": {
