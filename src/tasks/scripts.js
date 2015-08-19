@@ -17,11 +17,9 @@ gulp.task('lint', ['lint:all'], function() {});
 
 
 /**
- * Lint all files in src/javascript using JSHint and JSCS.
- *
- * Config for both are found in .jshintrc and .jscsrc respectively.
+ * Lint all files in src/javascript using ESLint.
  */
-gulp.task('lint:all', ['lint:jshint', 'lint:jscs'], function gulpLint() {});
+gulp.task('lint:all', ['lint:eslint'], function gulpLint() {});
 
 
 
