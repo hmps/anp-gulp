@@ -26,39 +26,16 @@ gulp.task('lint:all', ['lint:jshint', 'lint:jscs'], function gulpLint() {});
 
 
 /**
- * Lint all files in src/javascript using JSHint.
+ * Lint all files in src/javascript using ESLint.
  *
- * Config for both are found in .jshintrc and .jscsrc respectively.
+ * Config is found in .eslint.
  */
-gulp.task('lint:jshint', function gulpJshint() {
+gulp.task('lint:eslint', () => {
     return gulp.src([
-            'src/javascript/**/*.js'
-        ])
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'))
-        .pipe(size())
-        .on('error', notify.onError(function onError(error) {
-            return error.message;
-        }));
-});
-
-
-
-/**
- * Lint all files in src/javascript using JSCS.
- *
- * Config for both are found in .jshintrc and .jscsrc respectively.
- */
-gulp.task('lint:jscs', function gulpJscs() {
-    return gulp.src([
-            'src/javascript/**/*.js'
-        ])
-        .pipe(jscs())
-        .pipe(size())
-        .on('error', notify.onError(function onError(error) {
-            return error.message;
-        }));
+        'src/**/*.js'
+    ])
+    .pipe(eslint())
+    .pipe(eslint.format());
 });
 
 
@@ -91,7 +68,3 @@ gulp.task('js:dist', function gulpPackageJs() {
         .pipe(gulp.dest('dist/javascript'))
         .pipe(size());
 });
-
-
-
-
